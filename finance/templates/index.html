@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped">
+        <thead>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Name</th>
+                    <th>Shares</th>
+                    <th>Price</th>
+                    <th>TOTAL</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in user_stocks %}
+                    <tr>
+
+                        <td>{{ item.symbol }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.shares }}</td>
+                        <td>{{ stocks_prices[loop.index0] | usd }}</td>
+                        <td> {{ stocks_totals[loop.index0] | usd }}</td>
+
+                    </tr>
+                {% endfor %}
+
+                <tr>
+                    <td colspan = "4">CASH</td>
+                    <td>{{ user_cash | usd }}</td>
+                </tr>
+
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <td colspan="4"></td>
+                    <td>{{ user_total | usd }}</td>
+                </tr>
+            </tfoot>
+    </table>
+    <script>
+
+    </script>
+{% endblock %}
